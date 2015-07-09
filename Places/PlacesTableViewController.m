@@ -44,7 +44,9 @@ NSArray * placesResults;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    NSString* key = [[dictionary allKeys] objectAtIndex: section];
+    char a = 'a'+section;
+    NSString* key = [NSString stringWithFormat:@"%c",a];
+  //  [[dictionary allKeys] objectAtIndex: section];
     NSArray* results = [dictionary objectForKey:key];
     return [results count];
 }
@@ -83,6 +85,7 @@ NSMutableDictionary* dictionary;
     for(char a='a';a<='z';a++)
     {
         NSString *key = [NSString stringWithFormat:@"%c",a];
+        
         [self placeAutocomplete:key];
         
     }
@@ -100,7 +103,9 @@ NSMutableDictionary* dictionary;
         
     }
    // [cell.textLabel setText: [NSString stringWithFormat:@"Cell no %ld", (long)indexPath.row]];
-    NSString* key = [[dictionary allKeys] objectAtIndex: indexPath.section];
+    //NSString* key = [[dictionary allKeys] objectAtIndex: indexPath.section];
+    char a = 'a'+indexPath.section;
+    NSString* key = [NSString stringWithFormat:@"%c",a];
     NSArray* results = [dictionary objectForKey:key];
      GMSAutocompletePrediction* result =  results[indexPath.row];
     [cell.textLabel setText:[[result attributedFullText] string]];
