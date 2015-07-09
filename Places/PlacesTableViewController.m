@@ -7,20 +7,26 @@
 //
 
 #import "PlacesTableViewController.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface PlacesTableViewController ()
-
+@property (strong, atomic ) GMSPlacesClient* placesClient;
 @end
 
 @implementation PlacesTableViewController
 
+NSArray * placesResults;
+//NSInteger placesIndex;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _placesClient = [[GMSPlacesClient alloc] init];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //[self placeAutocomplete];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,13 +39,55 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
     // Return the number of sections.
-    return 3;
+    return [[dictionary allKeys] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 10;
+    NSString* key = [[dictionary allKeys] objectAtIndex: section];
+    NSArray* results = [dictionary objectForKey:key];
+    return [results count];
 }
+
+- (void)placeAutocomplete:(NSString*)key {
+
+    CLLocationCoordinate2D left= CLLocationCoordinate2DMake ( 44.437714,26.070900);
+    CLLocationCoordinate2D right = CLLocationCoordinate2DMake (44.431278,26.082401);
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:left coordinate:right];
+    
+    [_placesClient autocompleteQuery:key
+                              bounds:bounds
+                              filter:nil
+                            callback:^(NSArray *results, NSError *error) {
+                                if (error != nil) {
+                                    NSLog(@"Autocomplete error %@", [error localizedDescription]);
+                                    return;
+                                }
+                                
+                                placesResults = [NSArray new];
+                                placesResults = results;
+                                [dictionary setObject:placesResults forKey:key];
+                                for (GMSAutocompletePrediction* result in placesResults) {
+                                    NSLog(@"Result '%@' with placeID %@", result.attributedFullText.string, result.placeID);
+                                    
+                                } [self.tableView reloadData];
+                            }];
+    
+}
+
+NSMutableDictionary* dictionary;
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    dictionary = [[NSMutableDictionary alloc] init];
+    for(char a='a';a<='z';a++)
+    {
+        NSString *key = [NSString stringWithFormat:@"%c",a];
+        [self placeAutocomplete:key];
+        
+    }
+}
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -51,9 +99,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
         
     }
-    [cell.textLabel setText: [NSString stringWithFormat:@"Cell no %ld", (long)indexPath.row]];
+   // [cell.textLabel setText: [NSString stringWithFormat:@"Cell no %ld", (long)indexPath.row]];
+    NSString* key = [[dictionary allKeys] objectAtIndex: indexPath.section];
+    NSArray* results = [dictionary objectForKey:key];
+     GMSAutocompletePrediction* result =  results[indexPath.row];
+    [cell.textLabel setText:[[result attributedFullText] string]];
     
-    [self.view reloadInputViews];
     return cell;
 }
 
@@ -73,6 +124,9 @@
 {
     return 30;
 }
+
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
