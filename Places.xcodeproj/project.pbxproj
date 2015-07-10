@@ -22,6 +22,8 @@
 		5B29C5CA1B4E77FC00B51D5C /* PlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29C5C91B4E77FC00B51D5C /* PlacesTableViewController.m */; };
 		5B402A6D1B4FB20600E26C15 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B402A6C1B4FB20600E26C15 /* DetailViewController.m */; };
 		5B402A701B4FC35100E26C15 /* PlacesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B402A6F1B4FC35100E26C15 /* PlacesTableViewCell.m */; };
+		5B402A731B4FD19400E26C15 /* PositionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B402A721B4FD19400E26C15 /* PositionManager.m */; };
+		5B402A751B4FFACC00E26C15 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B402A741B4FFACC00E26C15 /* MapKit.framework */; };
 		794E1C34C5328453D6C50CF8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4DC13CF5257B1302218DEAF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,9 @@
 		5B402A6C1B4FB20600E26C15 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = Places/DetailViewController.m; sourceTree = "<group>"; };
 		5B402A6E1B4FC35100E26C15 /* PlacesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlacesTableViewCell.h; path = Places/PlacesTableViewCell.h; sourceTree = "<group>"; };
 		5B402A6F1B4FC35100E26C15 /* PlacesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlacesTableViewCell.m; path = Places/PlacesTableViewCell.m; sourceTree = "<group>"; };
+		5B402A711B4FD19400E26C15 /* PositionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PositionManager.h; path = Places/PositionManager.h; sourceTree = "<group>"; };
+		5B402A721B4FD19400E26C15 /* PositionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PositionManager.m; path = Places/PositionManager.m; sourceTree = "<group>"; };
+		5B402A741B4FFACC00E26C15 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A4DC13CF5257B1302218DEAF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA72872A1ECBD08857E55DAC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B402A751B4FFACC00E26C15 /* MapKit.framework in Frameworks */,
 				794E1C34C5328453D6C50CF8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,6 +189,8 @@
 				5B402A6C1B4FB20600E26C15 /* DetailViewController.m */,
 				5B402A6E1B4FC35100E26C15 /* PlacesTableViewCell.h */,
 				5B402A6F1B4FC35100E26C15 /* PlacesTableViewCell.m */,
+				5B402A711B4FD19400E26C15 /* PositionManager.h */,
+				5B402A721B4FD19400E26C15 /* PositionManager.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -199,6 +207,7 @@
 		C53C8B109DDA47404D129FF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5B402A741B4FFACC00E26C15 /* MapKit.framework */,
 				A4DC13CF5257B1302218DEAF /* libPods.a */,
 			);
 			name = Frameworks;
@@ -349,6 +358,7 @@
 				5B29C5CA1B4E77FC00B51D5C /* PlacesTableViewController.m in Sources */,
 				5B402A701B4FC35100E26C15 /* PlacesTableViewCell.m in Sources */,
 				0F2861F61B4BC6BD00A5680B /* ViewController.m in Sources */,
+				5B402A731B4FD19400E26C15 /* PositionManager.m in Sources */,
 				0F2861F31B4BC6BD00A5680B /* Places.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

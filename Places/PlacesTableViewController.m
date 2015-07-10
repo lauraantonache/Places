@@ -10,9 +10,13 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "DetailViewController.h"
 #import "PlacesTableViewCell.h"
+#import "PositionManager.h"
+
 @interface PlacesTableViewController ()
 @property (strong, atomic ) GMSPlacesClient* placesClient;
 @property (strong, atomic) GMSPlace* place;
+@property (weak,atomic) PositionManager* locationManager;
+//@property (weak,nonatomic) UIRefreshControl* refreshControl;
 @end
 
 @implementation PlacesTableViewController
@@ -29,11 +33,25 @@ NSArray * placesResults;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     //[self placeAutocomplete];
+    _locationManager = [PositionManager sharedManager];
+    self.locationManager.delegate = self;
+    UIRefreshControl* refreshControl = [UIRefreshControl new];
+    // Configure Refresh Control
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    
+    [self setRefreshControl:refreshControl];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)refresh:(id)sender
+{
+    [_locationManager requestPosition];
+    [(UIRefreshControl*)sender endRefreshing];
 }
 
 #pragma mark - Table view data source
@@ -53,10 +71,10 @@ NSArray * placesResults;
     return [results count];
 }
 
-- (void)placeAutocomplete:(NSString*)key {
-
-    CLLocationCoordinate2D left= CLLocationCoordinate2DMake ( 44.437714,26.070900);
-    CLLocationCoordinate2D right = CLLocationCoordinate2DMake (44.431278,26.082401);
+- (void)placeAutocomplete:(CLLocation*)location andKey:(NSString*)key {
+    
+    CLLocationCoordinate2D left= CLLocationCoordinate2DMake ( location.coordinate.latitude-0.01,location.coordinate.longitude+0.01);
+    CLLocationCoordinate2D right = CLLocationCoordinate2DMake ( location.coordinate.latitude+0.01,location.coordinate.longitude-0.01);
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:left coordinate:right];
     
     [_placesClient autocompleteQuery:key
@@ -84,17 +102,20 @@ NSMutableDictionary* dictionary;
 
 - (void) viewDidAppear:(BOOL)animated
 {
+    [_locationManager requestPosition];
+}
+
+-(void)getCurrentLocation:(CLLocation *)currentLocation
+{
     dictionary = [[NSMutableDictionary alloc] init];
     for(char a='a';a<='z';a++)
     {
         NSString *key = [NSString stringWithFormat:@"%c",a];
         
-        [self placeAutocomplete:key];
+        [self placeAutocomplete:currentLocation andKey:key];
         
     }
 }
-
-
 
 - (PlacesTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PlacesTableViewCell *cell;
@@ -191,6 +212,9 @@ NSIndexPath *selectedRow;
    
     }
 }
+
+
+
 
 /*
 // Override to support conditional editing of the table view.

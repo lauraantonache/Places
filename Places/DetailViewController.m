@@ -8,12 +8,18 @@
 
 #import "DetailViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import <MapKit/MapKit.h>
 
+
+#define METERS_PER_MILE 1609.344
 @interface DetailViewController ()
 @property (strong, atomic ) GMSPlacesClient* placesClient;
 @property (strong, atomic) IBOutlet UILabel* nameLabel;
 @property (strong, atomic) IBOutlet UILabel* addressLabel;
 @property (strong,atomic) IBOutlet UILabel* phoneLabel;
+@property (strong,atomic) IBOutlet MKMapView* mapView;
+@property (strong,atomic) IBOutlet UIButton* satelliteButton;
+@property (strong,atomic) IBOutlet UIButton* standardButton;
 @end
 
 @implementation DetailViewController
@@ -36,7 +42,13 @@
     _nameLabel.text = _place.name;
     _addressLabel.text = _place.formattedAddress;
     _phoneLabel.text = _place.phoneNumber;
-    
+    [_mapView setScrollEnabled:YES];
+    [_mapView setRegion: MKCoordinateRegionMakeWithDistance( _place.coordinate, 1*METERS_PER_MILE, 1*METERS_PER_MILE)];
+    MKPointAnnotation* pointAnnotation = [[MKPointAnnotation alloc] init];
+    [pointAnnotation setTitle:_place.name];
+    [pointAnnotation setCoordinate:_place.coordinate];
+    [_mapView addAnnotation:pointAnnotation];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,6 +59,17 @@
 -(void)setPlace:(GMSPlace *)place
 {
     _place = place;
+}
+
+-(IBAction)buttonPressed:(UIButton*)sender{
+    if([sender isEqual:_satelliteButton])
+    {
+        _mapView.mapType = MKMapTypeSatellite;
+    }
+    else if([sender isEqual:_standardButton])
+    {
+        _mapView.mapType = MKMapTypeStandard;
+    }
 }
 
 /*
