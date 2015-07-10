@@ -20,6 +20,8 @@
 		5B29C5C11B4E75C200B51D5C /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B29C5C01B4E75C200B51D5C /* placeholder@2x.png */; };
 		5B29C5C41B4E768A00B51D5C /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29C5C31B4E768A00B51D5C /* TabBarController.m */; };
 		5B29C5CA1B4E77FC00B51D5C /* PlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29C5C91B4E77FC00B51D5C /* PlacesTableViewController.m */; };
+		5B402A6D1B4FB20600E26C15 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B402A6C1B4FB20600E26C15 /* DetailViewController.m */; };
+		5B402A701B4FC35100E26C15 /* PlacesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B402A6F1B4FC35100E26C15 /* PlacesTableViewCell.m */; };
 		794E1C34C5328453D6C50CF8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4DC13CF5257B1302218DEAF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,10 @@
 		5B29C5C31B4E768A00B51D5C /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBarController.m; path = Places/TabBarController.m; sourceTree = "<group>"; };
 		5B29C5C81B4E77FC00B51D5C /* PlacesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlacesTableViewController.h; path = Places/PlacesTableViewController.h; sourceTree = "<group>"; };
 		5B29C5C91B4E77FC00B51D5C /* PlacesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlacesTableViewController.m; path = Places/PlacesTableViewController.m; sourceTree = "<group>"; };
+		5B402A6B1B4FB20600E26C15 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = Places/DetailViewController.h; sourceTree = "<group>"; };
+		5B402A6C1B4FB20600E26C15 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = Places/DetailViewController.m; sourceTree = "<group>"; };
+		5B402A6E1B4FC35100E26C15 /* PlacesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlacesTableViewCell.h; path = Places/PlacesTableViewCell.h; sourceTree = "<group>"; };
+		5B402A6F1B4FC35100E26C15 /* PlacesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlacesTableViewCell.m; path = Places/PlacesTableViewCell.m; sourceTree = "<group>"; };
 		A4DC13CF5257B1302218DEAF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA72872A1ECBD08857E55DAC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,6 +179,10 @@
 				5B29C5C31B4E768A00B51D5C /* TabBarController.m */,
 				5B29C5C81B4E77FC00B51D5C /* PlacesTableViewController.h */,
 				5B29C5C91B4E77FC00B51D5C /* PlacesTableViewController.m */,
+				5B402A6B1B4FB20600E26C15 /* DetailViewController.h */,
+				5B402A6C1B4FB20600E26C15 /* DetailViewController.m */,
+				5B402A6E1B4FC35100E26C15 /* PlacesTableViewCell.h */,
+				5B402A6F1B4FC35100E26C15 /* PlacesTableViewCell.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -332,10 +342,12 @@
 			files = (
 				5B29C5C41B4E768A00B51D5C /* TabBarController.m in Sources */,
 				0F2861F01B4BC6BD00A5680B /* AppDelegate.m in Sources */,
+				5B402A6D1B4FB20600E26C15 /* DetailViewController.m in Sources */,
 				0F2862191B4BCAF900A5680B /* Profile.m in Sources */,
 				0F28621C1B4BCCD700A5680B /* Settings.m in Sources */,
 				0F2861ED1B4BC6BD00A5680B /* main.m in Sources */,
 				5B29C5CA1B4E77FC00B51D5C /* PlacesTableViewController.m in Sources */,
+				5B402A701B4FC35100E26C15 /* PlacesTableViewCell.m in Sources */,
 				0F2861F61B4BC6BD00A5680B /* ViewController.m in Sources */,
 				0F2861F31B4BC6BD00A5680B /* Places.xcdatamodeld in Sources */,
 			);
